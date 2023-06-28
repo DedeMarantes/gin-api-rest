@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: alunos-api
+  name: alunos-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: alunos-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: alunos-api
+    spec:
+      containers:
+      - image: dede23/alunos-api:v2
+        name: alunos-api
+        env:
+          - name: HOST
+            value: postgres-svc
+        envFrom:
+          - configMapRef:
+              name: db-cm
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+status: {}
+

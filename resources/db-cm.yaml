@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  POSTGRES_DB: alunos
+  POSTGRES_PASSWORD: root
+  POSTGRES_USER: root
+kind: ConfigMap
+metadata:
+  name: db-cm

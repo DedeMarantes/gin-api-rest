@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    db: postgres
+  name: postgres
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      db: postgres
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        db: postgres
+    spec:
+      containers:
+      - image: postgres
+        name: postgres
+        envFrom:
+          - configMapRef:
+              name: db-cm
+        resources: 
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 250m
+            memory: 500Mi
+status: {}
